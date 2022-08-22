@@ -19,13 +19,13 @@ Dot source or copy-paste the function into PowerShell:
 Execute function in PowerShell passing chunk length and filename to be encoded:
 
 ```
-ChunkFileB64 5000 .\test.txt
+ChunkFileB64 5000 .\testFile.txt
 ```
 
 Example Base64 Output (truncated):
 
 ```
-PS C:\Users\IEUser\Desktop\ChunkFileB64> ChunkFileB64 1000 .\test.txt
+PS C:\Users\IEUser\Desktop\ChunkFileB64> ChunkFileB64 5000 .\testFile.txt
 ---  1  ---
 TG9yZW0g...cGlidXMg
 
@@ -38,27 +38,27 @@ IG51bmMg...ZGlhbS4g
 
 Copy-paste each line from the PowerShell session into a file on your own machine (truncated example in bash):
 ```
-root@kali:~/# echo -n 'TG9yZW0g...cGlidXMg'  > test.txt.b64
-root@kali:~/# echo -n 'aW4uIERv...dW5jIGF0' >> test.txt.b64
-root@kali:~/# echo -n 'IG51bmMg...ZGlhbS4g' >> test.txt.b64
+root@kali:~/# echo -n 'TG9yZW0g...cGlidXMg'  > testFile.txt.b64
+root@kali:~/# echo -n 'aW4uIERv...dW5jIGF0' >> testFile.txt.b64
+root@kali:~/# echo -n 'IG51bmMg...ZGlhbS4g' >> testFile.txt.b64
 ```
 
 Decode base64 to recover the file:
 ```
-root@kali:~/# base64 -d test.txt.b64 > test.txt
+root@kali:~/# base64 -d testFile.txt.b64 > testFile.txt
 ```
 
 Check md5 hash of the file in PowerShell:
 ```
-PS C:\Users\IEUser\Desktop\ChunkFileB64> Get-FileHash -Algorithm MD5 .\test.txt
+PS C:\Users\IEUser\Desktop\ChunkFileB64> Get-FileHash -Algorithm MD5 .\testFile.txt
 
 Algorithm       Hash                                                                   Path
 ---------       ----                                                                   ----
-MD5             D21EF80870D4D8872CA7B7604B8692CF                                       C:\Users\IEUser\Desktop\ChunkFileB64\test.txt
+MD5             D21EF80870D4D8872CA7B7604B8692CF                                       C:\Users\IEUser\Desktop\ChunkFileB64\testFile.txt
 ```
 
 Check md5 hash of the file in Bash:
 ```
-root@kali:~/# md5sum test.txt
-d21ef80870d4d8872ca7b7604b8692cf  test.txt
+root@kali:~/# md5sum testFile.txt
+d21ef80870d4d8872ca7b7604b8692cf  testFile.txt
 ```
