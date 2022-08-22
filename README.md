@@ -1,6 +1,13 @@
 # ChunkFileB64.ps1
 PowerShell base64 encode a file and break the output into chunks. Used to exfiltrate a file from a target machine onto your own machine using only copy and paste.
 
+### Why?
+Sometimes the only way to exfiltrate a file is through copy and paste from a PowerShell session into your own environment. If the file is fairly large, this can cause issues with clipboard and command line maximum size/length limitations in various situations. 
+
+This function first encodes the file into base64 then outputs pieces of the encoded value broken up by the chunk size you specify (number of characters).
+
+Copy and paste each section into a single file, no carriage returns or breaks, and then decode back to the original file. Its important to get the encoding correct when PowerShell generates the base64 since Unicode encoding will cause the process to fail if decoding in anything other than another PowerShell session (going from PowerShell encoding to Linux decoding).
+
 ## Usage
 
 Dot source or copy-paste the function into PowerShell:
